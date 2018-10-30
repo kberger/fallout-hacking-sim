@@ -11,10 +11,12 @@ copyright:           2010 Author Here
 category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
+data-files: dist/resources/words_alpha.txt
 
 executable FalloutHack
   hs-source-dirs:      src
   main-is:             Hacking.hs
   default-language:    Haskell2010
+  other-modules:       Paths_FalloutHack
   build-depends:       base >= 4.7 && < 5
                      , random

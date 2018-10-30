@@ -3,6 +3,7 @@ module Main where
 import Data.Char
 import System.Random
 import System.IO
+import Paths_FalloutHack
 
 computeSuccess :: String -> String -> Int
 computeSuccess key@(x:xs) attempt@(y:ys) 
@@ -28,8 +29,11 @@ playGame game = playGame' game 4
 playGame' :: (String, [String]) -> Int -> IO ()
 playGame' _ 0 = putStrLn "ILLEGAL ACCESS DETECTED! TERMINAL LOCK-OUT ENGAGED"
 playGame' game@(key, choices) n = do
-    putStrLn "Guess password:"
+    putStrLn "Clues:"
     putStr $ unlines choices
+    putStrLn "Key:"
+    putStrLn key
+    putStrLn "Guess password:"
     attempt <- getLine
     if attempt == key
     then putStrLn "Success! Terminal Access Granted!"
@@ -40,7 +44,8 @@ playGame' game@(key, choices) n = do
 
 main :: IO ()
 main = do 
-    wordlist <- readFile "/usr/share/dict/words"
+    fp <- getDataFileName "dist/resources/words_alpha.txt"
+    wordlist <- readFile fp
     let words = lines wordlist
     putStrLn "Select Difficulty (1-5):"
     diffLine <- getLine
