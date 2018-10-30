@@ -44,7 +44,7 @@ playGame' game@(key, choices) n = do
 
 main :: IO ()
 main = do 
-    fp <- getDataFileName "dist/resources/words_alpha.txt"
+    fp <- getDataFileName "src/words_alpha.txt"
     wordlist <- readFile fp
     let words = lines wordlist
     putStrLn "Select Difficulty (1-5):"
