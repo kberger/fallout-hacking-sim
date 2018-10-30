@@ -11,7 +11,7 @@ copyright:           2010 Author Here
 category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
-data-files: dist/resources/words_alpha.txt
+data-files:          src/words_alpha.txt
 
 executable FalloutHack
   hs-source-dirs:      src
