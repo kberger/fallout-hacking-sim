@@ -20,3 +20,4 @@ executable FalloutHack
   other-modules:       Paths_FalloutHack
   build-depends:       base >= 4.7 && < 5
                      , random
+                     , text

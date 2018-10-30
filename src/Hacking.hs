@@ -1,6 +1,7 @@
 module Main where
 
 import Data.Char
+import qualified Data.Text as T
 import System.Random
 import System.IO
 import Paths_FalloutHack
@@ -31,8 +32,9 @@ playGame' _ 0 = putStrLn "ILLEGAL ACCESS DETECTED! TERMINAL LOCK-OUT ENGAGED"
 playGame' game@(key, choices) n = do
     putStrLn "Clues:"
     putStr $ unlines choices
-    putStrLn "Key:"
-    putStrLn key
+--    putStrLn "Key:"
+--    putStrLn key 
+--    putStrLn (show (length key))
     putStrLn "Guess password:"
     attempt <- getLine
     if attempt == key
@@ -46,7 +48,7 @@ main :: IO ()
 main = do 
     fp <- getDataFileName "src/words_alpha.txt"
     wordlist <- readFile fp
-    let words = lines wordlist
+    let words = map (\x -> T.unpack (T.strip (T.pack x))) (lines wordlist)
     putStrLn "Select Difficulty (1-5):"
     diffLine <- getLine
     let diff = read diffLine
